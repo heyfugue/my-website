@@ -1,6 +1,6 @@
 "use client"
-import { motion, useDragControls } from "framer-motion"
-import React, { useState } from "react"
+import { motion, useDragControls, AnimatePresence } from "framer-motion"
+import React, { useState, useEffect } from "react"
 import { FaBook, FaPen, FaYoutube } from "react-icons/fa"
 import { FaXTwitter, FaTiktok, FaEnvelope, FaMoneyBill } from "react-icons/fa6"
 
@@ -49,20 +49,28 @@ const tabs: Record<string, { title: string, content: React.ReactNode }> = {
     )
   },
   journal: {
-    title: "journal",
-    content: (
-      <div className="p-6 bg-[#823521] rounded-b w-full h-full border border-white overflow-y-auto">
-        <div className="w-full h-[340px] bg-neutral-100/10 flex gap-6 p-6">
-          <div className="flex-1 flex flex-col">
-            <p>sketch - 7/16/26</p>
-            <br />
-            <p>this was the first time I tried clip studio paint, as a beginner i want to learn from better artists than i so i used the art from Day One of My New Life lc from hsr and tried to replicate it. i didnt finish but im happy with what i learned</p>
-          </div>
-          <img src="/march7th.jpg" className="w-[200px] h-[283px] object-cover rounded"/>
+  title: "journal",
+  content: (
+    <div className="p-6 bg-[#823521] rounded-b w-full h-full overflow-y-auto border border-white">
+      <div className="w-full bg-neutral-100/10 flex flex-col sm:flex-row gap-6 p-6">
+        <img src="/march7th.jpg" className="w-full sm:w-[200px] sm:h-[283px] aspect-[200/283] sm:aspect-auto object-cover rounded self-start" />
+        <div className="flex flex-col gap-2">
+          <p>sketch - 7/16/26</p>
+          <p>this was the first time I tried clip studio paint, as a beginner i want to learn from better artists than i so i used the art from Day One of My New Life lc from hsr and tried to replicate it. i didnt finish but im happy with what i learned</p>
         </div>
       </div>
-    )
-  },
+
+      <div className="w-full bg-neutral-100/10 flex flex-col sm:flex-row gap-6 p-6 mt-4">
+        <img src="/fugue.png" className="w-full sm:w-[200px] sm:h-[283px] aspect-[200/283] sm:aspect-auto object-cover rounded self-start" />
+        <div className="flex flex-col gap-2">
+          <p>sketch - 8/12/26</p>
+          <p>I was really tired making this one, I personally feel like ive been improving! Though I can't lie I am not particularly happy with how the sketch turned out but I do feel like I learned a bit more about anatomy.</p>
+        </div>
+      </div>
+
+    </div>
+  )
+},
 }
 
 function TabWindow({ name, onClose, index }: { name: string, onClose: () => void, index: number }) {
@@ -81,7 +89,7 @@ function TabWindow({ name, onClose, index }: { name: string, onClose: () => void
         top: `${20 + index * 80}px`,
         right: `${20 + index * 50}px`,
       }}
-      className="fixed w-[500px] h-[350px] rounded z-50"
+      className="fixed w-[600px] h-[450px] rounded z-50"
     >
       <div
         onPointerDown={(e) => dragControls.start(e)}
@@ -95,9 +103,58 @@ function TabWindow({ name, onClose, index }: { name: string, onClose: () => void
   )
 }
 
+function MobileSheet({ name, onClose }: { name: string, onClose: () => void }) {
+  return (
+    <motion.div
+      className="fixed inset-0 z-50 flex flex-col justify-end"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.15 }}
+    >
+      <div
+        className="absolute inset-0 bg-black/50"
+        onClick={onClose}
+      />
+
+      <motion.div
+        className="relative w-full rounded-t-xl overflow-hidden"
+        initial={{ y: "100%" }}
+        animate={{ y: 0 }}
+        exit={{ y: "100%" }}
+        transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
+      >
+        {/* title bar */}
+        <div className="w-full h-12 bg-[#471102] border border-white flex items-center px-4">
+          <h1 className="font-bold text-[16px]">{tabs[name].title}</h1>
+          <button onClick={onClose} className="ml-auto cursor-pointer font-bold">[ x ]</button>
+        </div>
+
+        <div className="h-[55vh] overflow-y-auto">
+          {tabs[name].content}
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
 export default function Home() {
-  const[openTabs, setOpenTabs] = useState<string[]>([])
+  const [openTabs, setOpenTabs] = useState<string[]>([])
+  const [mobileSheet, setMobileSheet] = useState<string | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [])
+
   const openTab = (name: string) => {
+    if (isMobile) {
+      setMobileSheet(name)
+      return
+    }
     if (openTabs.includes(name)) {
       setOpenTabs(openTabs.filter(tab => tab !== name))
     } else {
@@ -112,28 +169,38 @@ export default function Home() {
   return (
     <main className="flex justify-center items-center min-h-screen">
 
-      {openTabs.map((tab, index) => (
-        <TabWindow key={tab} name={tab} onClose={() => closeTab(tab)} index={index}/>
+      {!isMobile && openTabs.map((tab, index) => (
+        <TabWindow key={tab} name={tab} onClose={() => closeTab(tab)} index={index} />
       ))}
 
-      <div className="w-[700px] h-[400px] flex items-center">
+      <AnimatePresence>
+        {isMobile && mobileSheet && (
+          <MobileSheet
+            key={mobileSheet}
+            name={mobileSheet}
+            onClose={() => setMobileSheet(null)}
+          />
+        )}
+      </AnimatePresence>
+
+      <div className="w-full max-w-[700px] px-6 sm:px-0 sm:w-[700px] h-auto sm:h-[400px] flex flex-col sm:flex-row items-center gap-6 sm:gap-0">
 
         <motion.button
           onClick={() => openTab("about")}
           whileHover={{ y: [0, -8, 0] }}
           transition={{ repeat: Infinity, duration: 1.25, ease: "easeInOut" }}
-          className="cursor-pointer ml-16"
+          className="cursor-pointer sm:ml-16 flex-shrink-0"
         >
-          <div className="w-[280px] h-[280px] rounded-full border-2 border-white/50 flex items-center justify-center">
-            <img src="/fugue1.jpg" className="w-[260px] h-[260px] rounded-full bg-neutral-300"/>
+          <div className="w-[180px] h-[180px] sm:w-[280px] sm:h-[280px] rounded-full border-2 border-white/50 flex items-center justify-center">
+            <img src="/fugue1.jpg" className="w-[164px] h-[164px] sm:w-[260px] sm:h-[260px] rounded-full bg-neutral-300 object-cover" />
           </div>
         </motion.button>
 
-        <div className="h-[100%] flex-1 flex flex-col items-start ml-10">
-          <div className="w-[100%] h-[80px] mt-20 flex items-center">
-            <p className="font-bold text-[40px] text-white">fugue</p>
+        <div className="flex-1 flex flex-col items-center sm:items-start sm:ml-10">
+          <div className="flex items-center">
+            <p className="font-bold text-[32px] sm:text-[40px] text-white">fugue</p>
           </div>
-          <div className="w-[100%] flex-1 flex flex-col items-start">
+          <div className="flex flex-col items-center sm:items-start gap-1 mt-2">
 
             <div className="flex items-center gap-2">
               <a href="https://x.com/heyfugue" target="_blank" className="flex items-center gap-2 hover:opacity-70 transition-opacity cursor-pointer">
@@ -144,7 +211,7 @@ export default function Home() {
 
             <div className="flex items-center gap-2">
               <a href="https://www.youtube.com/@heyfugue" target="_blank" className="flex items-center gap-2 hover:opacity-70 transition-opacity cursor-pointer">
-                <FaYoutube className="w-4 h-4"/>
+                <FaYoutube className="w-4 h-4" />
                 <p>@ heyfugue</p>
               </a>
             </div>
@@ -158,8 +225,8 @@ export default function Home() {
 
             <div className="flex items-center gap-2">
               <a href="https://ko-fi.com/heyfugue" target="_blank" className="flex items-center gap-2 hover:opacity-70 transition-opacity cursor-pointer">
-              <img src="/kofi.png" className="w-4 h-4" />
-              <p>@ heyfugue</p>
+                <img src="/kofi.png" className="w-4 h-4" />
+                <p>@ heyfugue</p>
               </a>
             </div>
 
@@ -167,27 +234,26 @@ export default function Home() {
         </div>
       </div>
 
-      {/*taskbar area*/}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4">
-      
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4 sm:gap-4">
+
         <button onClick={() => openTab("portfolio")} className="flex flex-col items-center gap-1 cursor-pointer hover:-translate-y-1 transition-transform">
-          <FaPen className="w-6 h-6"/>
-          <p>portfolio</p>
+          <FaPen className="w-5 h-5 sm:w-6 sm:h-6" />
+          <p className="text-xs sm:text-sm">portfolio</p>
         </button>
 
         <button onClick={() => openTab("journal")} className="flex flex-col items-center gap-1 cursor-pointer hover:-translate-y-1 transition-transform">
-          <FaBook className="w-6 h-6"/>
-          <p>journal</p>
+          <FaBook className="w-5 h-5 sm:w-6 sm:h-6" />
+          <p className="text-xs sm:text-sm">journal</p>
         </button>
 
         <button onClick={() => openTab("contact")} className="flex flex-col items-center gap-1 cursor-pointer hover:-translate-y-1 transition-transform">
-          <FaEnvelope className="w-6 h-6"/>
-          <p>contact</p>
+          <FaEnvelope className="w-5 h-5 sm:w-6 sm:h-6" />
+          <p className="text-xs sm:text-sm">contact</p>
         </button>
 
         <button onClick={() => openTab("support")} className="flex flex-col items-center gap-1 cursor-pointer hover:-translate-y-1 transition-transform">
-          <FaMoneyBill className="w-6 h-6"/>
-          <p>support</p>
+          <FaMoneyBill className="w-5 h-5 sm:w-6 sm:h-6" />
+          <p className="text-xs sm:text-sm">support</p>
         </button>
 
       </div>
