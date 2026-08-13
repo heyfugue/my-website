@@ -68,6 +68,14 @@ const tabs: Record<string, { title: string, content: React.ReactNode }> = {
         </div>
       </div>
 
+      <div className="w-full bg-neutral-100/10 flex flex-col sm:flex-row gap-6 p-6 mt-4">
+        <img src="/castorice.png" className="w-full sm:w-[200px] sm:h-[283px] aspect-[200/283] sm:aspect-auto object-cover rounded self-start" />
+        <div className="flex flex-col gap-2">
+          <p>sketch - 8/13/26</p>
+          <p>Castorice from HSR! This was the absolutely most difficult sketch I have made so far. Though I am really happy with the progress I've made, this was a challenge from a commenter on tiktok so thanks! The hardest part was the arms and the hands, it's honestly still all over the place but honestly I am still happy with how it turned out.</p>
+        </div>
+      </div>
+
     </div>
   )
 },
@@ -118,7 +126,7 @@ function MobileSheet({ name, onClose }: { name: string, onClose: () => void }) {
       />
 
       <motion.div
-        className="relative w-full rounded-t-xl overflow-hidden"
+        className="relative w-full rounded-t-xl"
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
         exit={{ y: "100%" }}
