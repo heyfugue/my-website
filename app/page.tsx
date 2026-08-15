@@ -76,6 +76,14 @@ const tabs: Record<string, { title: string, content: React.ReactNode }> = {
         </div>
       </div>
 
+      <div className="w-full bg-neutral-100/10 flex flex-col sm:flex-row gap-6 p-6 mt-4">
+        <img src="/castoricecol.jpg" className="w-full sm:w-[200px] sm:h-[283px] aspect-[200/283] sm:aspect-auto object-cover rounded self-start" />
+        <div className="flex flex-col gap-2">
+          <p>Illustration | Castorice - 8/14/26</p>
+          <p>This was the first time I attempeted to finish an illustration with color. I am a little happy with the result but I definetely could do better in the future. The most difficult part was making solid colors vary, I tried to do it in the hair but was unsure how to do it on other areas. Other than that I hope you enjoy this one!</p>
+        </div>
+      </div>
+
     </div>
   )
 },
@@ -132,7 +140,6 @@ function MobileSheet({ name, onClose }: { name: string, onClose: () => void }) {
         exit={{ y: "100%" }}
         transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
       >
-        {/* title bar */}
         <div className="w-full h-12 bg-[#471102] border border-white flex items-center px-4">
           <h1 className="font-bold text-[16px]">{tabs[name].title}</h1>
           <button onClick={onClose} className="ml-auto cursor-pointer font-bold">[ x ]</button>
