@@ -8,8 +8,11 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "heyfugue",
+  title: "heyfugue's website!",
   description: "hi! im fugue, a cs student who loves art, music and storytelling!",
+  icons: {
+    icon: "/profilepic.png",
+  }
 };
 
 export default function RootLayout({
@@ -19,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
+      <head>
+        <link rel="icon" href="/profilepic.png" />
+      </head>
       <body className={`${lato.className} min-h-full flex flex-col`}>
         {children}
       </body>
