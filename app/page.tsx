@@ -177,7 +177,7 @@ export default function Home() {
 
   return (
     <main
-      className="flex justify-center items-center min-h-screen relative"
+      className="flex justify-center items-center min-h-dvh relative"
       style={{
         backgroundImage: "url('/background.jpg')",
         backgroundSize: "cover",
