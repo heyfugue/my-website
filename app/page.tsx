@@ -122,7 +122,7 @@ function TabWindow({ name, onClose, index }: { name: string, onClose: () => void
     >
       <div
         onPointerDown={(e) => dragControls.start(e)}
-        className="w-full h-12 cursor-grab active:cursor-grabbing flex items-center px-4 select-none bg-black/70"
+        className="w-full h-12 cursor-grab active:cursor-grabbing flex items-center px-4 select-none bg-black/80"
       >
         <h1 className="font-bold text-[16px]">{tabs[name].title}</h1>
 
@@ -134,7 +134,7 @@ function TabWindow({ name, onClose, index }: { name: string, onClose: () => void
         </button>
       </div>
 
-      <div className="h-[calc(100%-3rem)] bg-black/60">
+      <div className="h-[calc(100%-3rem)] bg-black/70">
         {tabs[name].content}
       </div>
     </motion.div>
@@ -156,7 +156,7 @@ function MobileSheet({ name, onClose }: { name: string, onClose: () => void }) {
       />
 
       <motion.div
-        className="relative w-full rounded-t-xl overflow-hidden"
+        className="relative w-full rounded-t-xl"
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
         exit={{ y: "100%" }}
@@ -167,7 +167,7 @@ function MobileSheet({ name, onClose }: { name: string, onClose: () => void }) {
           backgroundPosition: "center",
         }}
       >
-        <div className="w-full h-12 bg-black/70 border border-white flex items-center px-4">
+        <div className="w-full h-12 bg-black/80 border border-white flex items-center px-4">
           <h1 className="font-bold text-[16px]">{tabs[name].title}</h1>
           <button
             onClick={onClose}
@@ -177,7 +177,7 @@ function MobileSheet({ name, onClose }: { name: string, onClose: () => void }) {
           </button>
         </div>
 
-        <div className="h-[55vh] overflow-y-auto bg-black/60">
+        <div className="h-[55vh] overflow-y-auto bg-black/70">
           {tabs[name].content}
         </div>
       </motion.div>
@@ -242,8 +242,8 @@ export default function Home() {
       <div className="relative z-10 w-full max-w-[700px] px-6 sm:px-0 sm:w-[700px] h-auto sm:h-[400px] flex flex-col sm:flex-row items-center gap-6 sm:gap-0">
         <motion.button
           onClick={() => openTab("about")}
-          animate={{ y: [0, -6, 0] }}
-          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+          whileHover={{ y: [0, -6, 0] }}
+          transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
           className="cursor-pointer sm:ml-16 flex-shrink-0"
         >
           <div className="w-[180px] h-[180px] sm:w-[280px] sm:h-[280px] rounded-full border-2 border-white/50 flex items-center justify-center">
@@ -254,9 +254,6 @@ export default function Home() {
         <div className="flex-1 flex flex-col items-center sm:items-start sm:ml-10">
           <div className="flex items-center">
             <p className="font-bold text-[32px] sm:text-[40px] text-white">fugue</p>
-          </div>
-          <div className="">
-            <p className="opacity-75 ">beginner artist | hsr streamer</p>
           </div>
           <div className="flex flex-col items-center sm:items-start gap-1 mt-2">
             <div className="flex items-center gap-2">
