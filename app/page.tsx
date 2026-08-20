@@ -71,6 +71,7 @@ const tabs: Record<string, { title: string, content: React.ReactNode }> = {
             <p>Castorice from HSR! This was the absolutely most difficult sketch I have made so far. Though I am really happy with the progress I've made, this was a challenge from a commenter on tiktok so thanks! The hardest part was the arms and the hands, it's honestly still all over the place but honestly I am still happy with how it turned out.</p>
           </div>
         </div>
+
         <div className="w-full bg-neutral-100/10 flex flex-col sm:flex-row gap-6 p-6 mt-4">
           <img src="/castoricecol.jpg" className="w-full sm:w-[200px] sm:h-[283px] aspect-[200/283] sm:aspect-auto object-cover rounded self-start" />
           <div className="flex flex-col gap-2">
@@ -78,6 +79,7 @@ const tabs: Record<string, { title: string, content: React.ReactNode }> = {
             <p>This was the first time I attempeted to finish an illustration with color. I am a little happy with the result but I definetely could do better in the future. The most difficult part was making solid colors vary, I tried to do it in the hair but was unsure how to do it on other areas. Other than that I hope you enjoy this one!</p>
           </div>
         </div>
+
         <div className="w-full bg-neutral-100/10 flex flex-col gap-6 p-4 mt-4 items-center">
           <div className="flex flex-row gap-4 w-full">
           <img
@@ -94,6 +96,23 @@ const tabs: Record<string, { title: string, content: React.ReactNode }> = {
             <p>This was another viewer request! At the start I was struggling since the proportions are different than what I'm used to, though after a lot of tweaking I feel like I got it right! I ended up making a lot of major changes throughout leading to me taking the entire day to finish this as I forgot a lot of her important details. I am continuing to practice my coloring / rending as I noticed I really lack that but I am honsetly really happy with how this turned out! </p>
           </div>
         </div>
+
+        <div className="w-full bg-neutral-100/10 flex flex-col sm:flex-row gap-6 p-6 mt-4">
+          <img src="/sobin.jpg" className="w-full sm:w-[200px] sm:h-[283px] aspect-[200/283] sm:aspect-auto object-cover rounded self-start" />
+          <div className="flex flex-col gap-2">
+            <p>Illustration | Robin Summeretto - 8/19/26</p>
+            <p>Another viewer request! During the sketch process I was feeling good about it but as I colored it I realize I really need to work on my color theory and just practice more. I noticed I started doing sketches of just heads and their shoulders and immediatly jumped to full body illustrations (If you can call it that) so I think my next project will zoom more into the face to work more on my coloring / rendering!</p>
+          </div>
+        </div>
+
+        <div className="w-full bg-neutral-100/10 flex flex-col gap-6 p-6 mt-4">
+          <img src="/silverwolfysketch.jpg" className="w-[90%] mx-auto aspect-[3508/2480] object-cover rounded"/>
+          <div className="flex flex-col gap-2">
+            <p>Sketch | Silver Wolf - 8/20/26</p>
+            <p>Silver wolf was request by a lot of viewers! I had the idea in mind of what I wanted but mainly got the idea from her character trailer "Got a Date?". I am really happy with this sketch, though the hard part comes next as thats what I intend to work on.</p>
+          </div>
+        </div>
+        
       </div>
     )
   },
