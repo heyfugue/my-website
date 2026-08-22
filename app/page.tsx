@@ -44,7 +44,7 @@ const tabs: Record<string, { title: string, content: React.ReactNode }> = {
         <br />
         <p>though feel free to contact me on any of my socials!</p>
       </div>
-    )
+    ) 
   },
   journal: {
     title: "journal",
@@ -110,6 +110,14 @@ const tabs: Record<string, { title: string, content: React.ReactNode }> = {
           <div className="flex flex-col gap-2">
             <p>Sketch | Silver Wolf - 8/20/26</p>
             <p>Silver wolf was request by a lot of viewers! I had the idea in mind of what I wanted but mainly got the idea from her character trailer "Got a Date?". I am really happy with this sketch, though the hard part comes next as thats what I intend to work on.</p>
+          </div>
+        </div>
+
+        <div className="w-full bg-neutral-100/10 flex flex-col gap-6 p-6 mt-4">
+          <img src="/silverwolf.jpg" className="w-[90%] mx-auto aspect-[3508/2480] object-cover rounded"/>
+          <div className="flex flex-col gap-2">
+            <p>Illustration | Silver Wolf - 8/21/26</p>
+            <p>My finished Silver Wolf illustration! I am happy that I was requested her because I feel like this time I learned a lot more and feel like I got my own process down. Theres still a lot to learn but I am genuinely really happy how this one turned out!</p>
           </div>
         </div>
         
@@ -297,12 +305,6 @@ export default function Home() {
               <a href="https://www.tiktok.com/@heyfugue" target="_blank" className="flex items-center gap-2 hover:opacity-70 transition-opacity cursor-pointer">
                 <FaTiktok className="w-4 h-4" />
                 <p>tiktok</p>
-              </a>
-            </div>
-            <div className="flex items-center gap-2">
-              <a href="https://ko-fi.com/heyfugue" target="_blank" className="flex items-center gap-2 hover:opacity-70 transition-opacity cursor-pointer">
-                <img src="/kofi.png" className="w-4 h-4" />
-                <p>ko-fi</p>
               </a>
             </div>
           </div>
