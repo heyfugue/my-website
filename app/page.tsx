@@ -31,8 +31,6 @@ const tabs: Record<string, { title: string, content: React.ReactNode }> = {
     content: (
       <div className="p-6 rounded-b w-full h-full border border-white">
         <p>the best way to support me is simply following my socials and giving me feedback! i promise it means a lot</p>
-        <br />
-        <p>extra support is my ko-fi, though following along is enough support!</p>
       </div>
     )
   },
