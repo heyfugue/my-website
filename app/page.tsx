@@ -9,10 +9,10 @@ const tabs: Record<string, { title: string, content: React.ReactNode }> = {
     title: "about",
     content: (
       <div className="p-6 rounded-b w-full h-full border border-white">
-        <h2>hi im fugue!</h2>
-        <p>im a beginner artist and a current CS student!</p>
+        <h2>hey im fugue!</h2>
+        <p>i make hsr art and make content! also i am currently in school for cs</p>
         <br />
-        <p>mihoyo games especially HSR have inspired me to start making art! So as i work on that i plan to post my progress on twitter and tiktok as well as streaming Honkai Star Rail and maybe my art progress!</p>
+        <p>mihoyo games have really inspired me, especially HSR! so this is my website so show you around! I post art on twitter and tiktok, and make hsr content on youtube! also most of my content is streamed live on my twitch</p>
         <br />
         <p>thanks for reading!</p>
       </div>
