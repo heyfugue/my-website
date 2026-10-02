@@ -272,7 +272,7 @@ export default function Home() {
           className="cursor-pointer sm:ml-16 flex-shrink-0"
         >
           <div className="w-[180px] h-[180px] sm:w-[280px] sm:h-[280px] rounded-full border-2 border-white/50 flex items-center justify-center">
-            <img src="/profilepic.png" className="w-[164px] h-[164px] sm:w-[260px] sm:h-[260px] rounded-full bg-neutral-300 object-cover" />
+            <img src="/eva_pfp3.png" className="w-[164px] h-[164px] sm:w-[260px] sm:h-[260px] rounded-full bg-neutral-300 object-cover" />
           </div>
         </motion.button>
 

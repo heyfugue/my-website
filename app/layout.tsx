@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <head>
-        <link rel="icon" href="/profilepic.jpg" />
+        <link rel="icon" href="/eva_pfp3.jpg" />
       </head>
       <body className={`${lato.className} min-h-full flex flex-col`}>
         {children}
